@@ -38,6 +38,15 @@ const projectsData = [
     year: '2024-2025',
     link: 'https://onboard-40e06.web.app/'
   },
+  {
+    id: 5,
+    title: 'SSG Office Assistant App',
+    description: 'Prototype office management system for Student Government. Streamlines administrative tasks, document management, and student services with an intuitive interface.',
+    image: '/img/project/ssg.png',
+    tags: ['Office Management', 'Student Services', 'Prototype'],
+    year: '2024-2025',
+    link: 'https://elijahtugad2005.github.io/Prototype-SSG-Office-Assistant-App/'
+  },
 ];
 
 const Projects = () => {
