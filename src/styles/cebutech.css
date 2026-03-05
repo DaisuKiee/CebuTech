@@ -158,13 +158,13 @@ body {
 .logo-icon {
   width: 42px;
   height: 42px;
-  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  background: transparent;
   border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
-  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.1);
+  box-shadow: none;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
   position: relative;
@@ -174,18 +174,18 @@ body {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), transparent);
+  background: transparent;
   opacity: 0;
   transition: opacity 0.3s ease;
 }
 
 .logo-icon:hover {
   transform: scale(1.05) translateY(-2px);
-  box-shadow: 0 8px 30px rgba(99, 102, 241, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.2);
+  box-shadow: none;
 }
 
 .logo-icon:hover::before {
-  opacity: 1;
+  opacity: 0;
 }
 
 .logo-image {
