@@ -4,52 +4,40 @@ import { ExternalLink } from 'lucide-react';
 const projectsData = [
   {
     id: 1,
-    title: 'Student Dashboard System',
-    description: 'Modern web application for student management with real-time analytics and reporting.',
-    image: 'https://images.unsplash.com/photo-1763718432504-7716caff6e99',
-    tags: ['React', 'Node.js', 'MongoDB'],
-    team: 'Team Alpha'
+    title: 'Daanbantayan Paradise',
+    description: 'Tourist booking platform for Daanbantayan, Cebu. Connects travelers with accommodations, diving adventures, and island hopping tours in the pristine northern tip of Cebu.',
+    image: '/img/project/db.png',
+    tags: ['Tourism', 'Booking System', 'Web App'],
+    year: '2023-2024',
+    link: 'https://dbtourist.vercel.app/'
   },
   {
     id: 2,
-    title: 'Robotics Innovation Lab',
-    description: 'Autonomous robot project designed for navigation and object detection challenges.',
-    image: 'https://images.pexels.com/photos/9242846/pexels-photo-9242846.jpeg',
-    tags: ['Arduino', 'Python', 'AI'],
-    team: 'Tech Pioneers'
+    title: 'SSG Innovoice',
+    description: 'Digital suggestion box system for student government. A modern platform for collecting, managing, and responding to student feedback and suggestions.',
+    image: '/img/project/innovoice.png',
+    tags: ['Suggestion System', 'Student Portal', 'Web App'],
+    year: '2024-2025',
+    link: 'https://ssginnovoice.filipino.gg/'
   },
   {
     id: 3,
-    title: 'IoT Hardware Project',
-    description: 'Smart device integration platform for home automation and energy monitoring.',
-    image: 'https://images.pexels.com/photos/4705604/pexels-photo-4705604.jpeg',
-    tags: ['IoT', 'ESP32', 'Cloud'],
-    team: 'Circuit Breakers'
+    title: 'GPTracker',
+    description: 'Group payment tracking platform for transparent and secure group payment record-keeping. Create tabs, add members, record transactions, and generate reports with Firebase integration.',
+    image: '/img/project/gpt.png',
+    tags: ['Payment Tracker', 'Firebase', 'Google Auth'],
+    year: '2024-2025',
+    link: 'https://group-payment-tracker.web.app/'
   },
   {
     id: 4,
-    title: 'Code Learning Platform',
-    description: 'Interactive coding education platform with real-time collaboration features.',
-    image: 'https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg',
-    tags: ['JavaScript', 'WebRTC', 'Firebase'],
-    team: 'Code Masters'
+    title: 'OnBoard',
+    description: 'Community management platform reimagined with Filipino Bayanihan spirit. Features smart attendance tracking, performance monitoring, and seamless communication tools for community organizations.',
+    image: '/img/project/onboard.png',
+    tags: ['Community Management', 'Attendance', 'Dashboard'],
+    year: '2024-2025',
+    link: 'https://onboard-40e06.web.app/'
   },
-  {
-    id: 5,
-    title: 'Algorithm Visualizer',
-    description: 'Educational tool for visualizing complex algorithms and data structures.',
-    image: 'https://images.pexels.com/photos/6190327/pexels-photo-6190327.jpeg',
-    tags: ['Vue.js', 'D3.js', 'CSS'],
-    team: 'Visual Dev'
-  },
-  {
-    id: 6,
-    title: 'Mobile Learning App',
-    description: 'Cross-platform mobile application for on-the-go programming tutorials.',
-    image: 'https://images.unsplash.com/photo-1565229284535-2cbbe3049123',
-    tags: ['React Native', 'Expo', 'API'],
-    team: 'Mobile Squad'
-  }
 ];
 
 const Projects = () => {
@@ -82,9 +70,9 @@ const Projects = () => {
     <section id="projects" className="projects-section" ref={sectionRef}>
       <div className="projects-container">
         <div className={`projects-header ${isVisible ? 'visible' : ''}`}>
-          <h2 className="section-title">Student Projects</h2>
+          <h2 className="section-title">Our Projects</h2>
           <p className="section-subtitle">
-            Innovative solutions and creative tech projects built by our talented students
+            A showcase of our journey through various projects from first year to now
           </p>
         </div>
 
@@ -101,11 +89,19 @@ const Projects = () => {
                   alt={project.title}
                   className="project-image"
                 />
-                <div className="project-overlay">
-                  <button className="project-view-btn">
-                    <ExternalLink size={20} />
-                  </button>
-                </div>
+                {project.link && (
+                  <div className="project-overlay">
+                    <a 
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="project-view-btn"
+                    >
+                      <ExternalLink size={20} />
+                      <span>View Project</span>
+                    </a>
+                  </div>
+                )}
               </div>
               
               <div className="project-content">
@@ -118,7 +114,7 @@ const Projects = () => {
                   ))}
                 </div>
                 
-                <div className="project-team">{project.team}</div>
+                <div className="project-team">{project.year}</div>
               </div>
             </div>
           ))}

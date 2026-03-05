@@ -1,20 +1,41 @@
 import React from 'react';
 import { Layers } from 'lucide-react';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const Navbar = ({ scrollY }) => {
   const scrolled = scrollY > 50;
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  const scrollToSection = (id) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+  const handleNavigation = (sectionId) => {
+    // If we're not on the home page, navigate to home first
+    if (location.pathname !== '/') {
+      navigate('/');
+      // Wait for navigation to complete, then scroll
+      setTimeout(() => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    } else {
+      // If we're already on home page, just scroll
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
     }
+  };
+
+  const handleLogoClick = () => {
+    navigate('/');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
     <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
       <div className="navbar-container">
-        <div className="navbar-logo">
+        <div className="navbar-logo" onClick={handleLogoClick} style={{ cursor: 'pointer' }}>
           <div className="logo-icon">
             <Layers size={28} strokeWidth={2.5} />
           </div>
@@ -22,16 +43,19 @@ const Navbar = ({ scrollY }) => {
         </div>
 
         <div className="navbar-links">
-          <button onClick={() => scrollToSection('hero')} className="nav-link">
+          <button onClick={() => handleNavigation('hero')} className="nav-link">
             Home
           </button>
-          <button onClick={() => scrollToSection('programs')} className="nav-link">
+          <button onClick={() => handleNavigation('programs')} className="nav-link">
             Programs
           </button>
-          <button onClick={() => scrollToSection('batch-info')} className="nav-link">
+          <button onClick={() => handleNavigation('projects')} className="nav-link">
+            Projects
+          </button>
+          <button onClick={() => handleNavigation('batch-info')} className="nav-link">
             Batch Info
           </button>
-          <button onClick={() => scrollToSection('about')} className="nav-link">
+          <button onClick={() => handleNavigation('about')} className="nav-link">
             About
           </button>
         </div>

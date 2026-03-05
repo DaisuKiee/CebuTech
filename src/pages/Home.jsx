@@ -3,6 +3,7 @@ import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
 import Programs from '../components/Programs';
 import Students from '../components/Students';
+import Projects from '../components/Projects';
 import BatchInfo from '../components/BatchInfo';
 import About from '../components/About';
 import Footer from '../components/Footer';
@@ -25,6 +26,7 @@ const Home = () => {
       <Hero scrollY={scrollY} />
       <Programs />
       <Students limit={7} showSeeMore={true} />
+      <Projects />
       <BatchInfo />
       <About />
       <Footer />
