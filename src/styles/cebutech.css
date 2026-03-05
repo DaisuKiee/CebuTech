@@ -11,6 +11,8 @@ html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 body {
@@ -19,11 +21,15 @@ body {
   color: #e5e7eb;
   overflow-x: hidden;
   min-height: 100vh;
+  width: 100%;
+  position: relative;
 }
 
 .home-container {
   min-height: 100vh;
   position: relative;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 /* ===== NAVBAR ===== */
@@ -375,6 +381,8 @@ body {
   );
   margin-top: 0;
   z-index: 10;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 .programs-banner {
@@ -390,6 +398,8 @@ body {
   max-width: 1400px;
   margin: 0 auto;
   z-index: 10;
+  width: 100%;
+  padding: 0 1rem;
 }
 
 .programs-header,
@@ -523,6 +533,8 @@ body {
     rgba(10, 10, 15, 1) 100%
   );
   position: relative;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 .projects-section::before {
@@ -543,6 +555,8 @@ body {
 .projects-container {
   max-width: 1400px;
   margin: 0 auto;
+  width: 100%;
+  padding: 0 1rem;
 }
 
 .projects-grid {
@@ -690,6 +704,8 @@ body {
     rgba(10, 10, 15, 1) 100%
   );
   position: relative;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 .students-section::before {
@@ -710,6 +726,8 @@ body {
 .students-container {
   max-width: 1400px;
   margin: 0 auto;
+  width: 100%;
+  padding: 0 1rem;
 }
 
 .students-header {
@@ -921,6 +939,8 @@ body {
 .students-page-container {
   min-height: 100vh;
   background: linear-gradient(135deg, #0a0a0f 0%, #050508 100%);
+  width: 100%;
+  overflow-x: hidden;
 }
 
 .page-hero {
@@ -979,6 +999,8 @@ body {
     rgba(5, 5, 8, 0.95) 100%
   );
   position: relative;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 .batch-section::before {
@@ -999,6 +1021,8 @@ body {
 .batch-container {
   max-width: 1200px;
   margin: 0 auto;
+  width: 100%;
+  padding: 0 1rem;
 }
 
 .batch-grid {
@@ -1089,6 +1113,8 @@ body {
     rgba(10, 10, 15, 1) 100%
   );
   position: relative;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 .about-section::before {
@@ -1109,6 +1135,8 @@ body {
 .about-container {
   max-width: 900px;
   margin: 0 auto;
+  width: 100%;
+  padding: 0 1rem;
 }
 
 .about-content {
@@ -1141,6 +1169,8 @@ body {
   max-width: 1400px;
   margin: 0 auto;
   text-align: center;
+  width: 100%;
+  padding: 0 1rem;
 }
 
 .footer-text {
