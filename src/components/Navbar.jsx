@@ -1,5 +1,4 @@
 import React from 'react';
-import { Layers } from 'lucide-react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 const Navbar = ({ scrollY }) => {
@@ -37,7 +36,7 @@ const Navbar = ({ scrollY }) => {
       <div className="navbar-container">
         <div className="navbar-logo" onClick={handleLogoClick} style={{ cursor: 'pointer' }}>
           <div className="logo-icon">
-            <Layers size={28} strokeWidth={2.5} />
+            <img src="/img/ctulogo.png" alt="CTU Logo" className="logo-image" />
           </div>
           <span className="logo-text">CebuTech</span>
         </div>

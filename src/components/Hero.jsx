@@ -15,7 +15,7 @@ const Hero = ({ scrollY }) => {
         className="hero-background"
         style={{
           transform: `translateY(${parallaxOffset}px)`,
-          backgroundImage: 'url(/img/ctu.jpg)'
+          backgroundImage: 'url(/img/ctu.png)'
         }}
       />
       <div className="hero-overlay" />
