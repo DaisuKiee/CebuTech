@@ -18,7 +18,8 @@
     "test": "craco test",
     "eject": "react-scripts eject",
     "server": "node server.js",
-    "dev": "npm run build && npm run server"
+    "dev": "npm run build && npm run server",
+    "vercel-build": "craco build"
   },
   "eslintConfig": {
     "extends": [
