@@ -1,0 +1,22 @@
+{
+  "short_name": "CebuTech",
+  "name": "CebuTech - BSIT Batch 2023-2027",
+  "description": "CebuTech showcases BSIT Batch 2023-2027 from Cebu Technological University",
+  "icons": [
+    {
+      "src": "/img/ctulogo.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/img/ctulogo.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#6366f1",
+  "background_color": "#0a0a0f",
+  "orientation": "portrait-primary"
+}
