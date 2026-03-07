@@ -32,7 +32,7 @@
 1. Go to [Google Search Console](https://search.google.com/search-console)
 2. Add property: `https://cebutech.digital`
 3. Verify ownership (HTML file method or meta tag)
-4. Submit sitemap: `https://cebutech.digital/sitemap.xml`
+4. Submit sitemap: ``
 
 #### Bing Webmaster Tools
 1. Go to [Bing Webmaster Tools](https://www.bing.com/webmasters)

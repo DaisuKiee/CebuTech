@@ -33,7 +33,7 @@ const About = () => {
           <h2 className="section-title">About Us</h2>
           <p className="about-text">
             We are a community of BSIT students, tech enthusiasts, innovators, and future leaders 
-            from Cebu Technological University – Carmen Campus. This showcase highlights our journey, 
+            from Cebu Technological University – Daanbantayan Campus. This showcase highlights our journey, 
             projects, and achievements as we progress through our academic years. Together, we're 
             building the future of technology in the Philippines.
           </p>
