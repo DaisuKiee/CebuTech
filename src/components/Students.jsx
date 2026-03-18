@@ -48,8 +48,8 @@ const studentsData = [
     id: 5,
     name: 'Marco Montellano',
     role: 'Leader',
-    frontImage: '/img/meme-marco.jpg',
-    backImage: '/img/Marco.jpg',
+    frontImage: '/img/Marco.jpg',
+    backImage: '/img/meme-marco.jpg',
     github: 'https://github.com',
     facebook: 'https://facebook.com',
     showHover: true
