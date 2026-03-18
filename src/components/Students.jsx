@@ -78,8 +78,8 @@ const studentsData = [
     id: 8,
     name: 'Allan Jr. De Jesus',
     role: 'Leader',
-    frontImage: '/img/noprofile.jpg',
-    backImage: '/img/noprofile.jpg',
+    frontImage: '/img/allan.png',
+    backImage: '/img/meme-allan.jpg',
     github: 'https://github.com',
     facebook: 'https://facebook.com',
     showHover: true
