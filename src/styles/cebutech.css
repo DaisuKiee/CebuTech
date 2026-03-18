@@ -34,7 +34,7 @@ body {
 
 /* ===== NAVBAR ===== */
 .navbar {
-  position: fixed;
+  position: absolute;
   top: 1.5rem;
   left: 50%;
   transform: translateX(-50%);
