@@ -39,7 +39,7 @@ const studentsData = [
     name: 'John Cadaro',
     role: 'Leader',
     frontImage: '/img/john.png',
-    backImage: '/img/john.png',
+    backImage: '/img/meme-john.jpg',
     github: 'https://github.com',
     facebook: 'https://facebook.com',
     showHover: true
