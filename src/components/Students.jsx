@@ -69,6 +69,15 @@ const studentsData = [
   },
   {
     id: 8,
+    name: 'Allan Jr. De Jesus',
+    role: 'Leader',
+    image: '/img/noprofile.jpg',
+    github: 'https://github.com',
+    facebook: 'https://facebook.com',
+    showHover: true
+  },
+  {
+    id: 9,
     name: 'Kier Louie Arriesgado',
     role: 'BSIT Student',
     image: '/img/noprofile.jpg',
@@ -76,7 +85,7 @@ const studentsData = [
     showHover: false
   },
   {
-    id: 9,
+    id: 10,
     name: 'Francis Keith Banan',
     role: 'BSIT Student',
     image: '/img/noprofile.jpg',
@@ -84,7 +93,7 @@ const studentsData = [
     showHover: false
   },
   {
-    id: 10,
+    id: 11,
     name: 'Romel Batusbatusan',
     role: 'BSIT Student',
     image: '/img/noprofile.jpg',
@@ -92,7 +101,7 @@ const studentsData = [
     showHover: false
   },
   {
-    id: 11,
+    id: 12,
     name: 'John Fernand Bauno',
     role: 'BSIT Student',
     image: '/img/noprofile.jpg',
@@ -157,15 +166,6 @@ const studentsData = [
   },
   {
     id: 19,
-    name: 'Allan Jr. De Jesus',
-    role: 'Leader',
-    image: '/img/noprofile.jpg',
-    github: 'https://github.com',
-    facebook: 'https://facebook.com',
-    showHover: true
-  },
-  {
-    id: 20,
     name: 'Bea Dejito',
     role: 'BSIT Student',
     image: '/img/noprofile.jpg',
@@ -173,7 +173,7 @@ const studentsData = [
     showHover: false
   },
   {
-    id: 21,
+    id: 20,
     name: 'Frances Mae Dela Pieza',
     role: 'BSIT Student',
     image: '/img/noprofile.jpg',
@@ -181,7 +181,7 @@ const studentsData = [
     showHover: false
   },
   {
-    id: 22,
+    id: 21,
     name: 'Bea Delos Santos',
     role: 'BSIT Student',
     image: '/img/noprofile.jpg',
@@ -189,7 +189,7 @@ const studentsData = [
     showHover: false
   },
   {
-    id: 23,
+    id: 22,
     name: 'Vence Peter Doble',
     role: 'BSIT Student',
     image: '/img/noprofile.jpg',
@@ -197,7 +197,7 @@ const studentsData = [
     showHover: false
   },
   {
-    id: 24,
+    id: 23,
     name: 'Justin Dumon',
     role: 'BSIT Student',
     image: '/img/noprofile.jpg',
@@ -205,7 +205,7 @@ const studentsData = [
     showHover: false
   },
   {
-    id: 25,
+    id: 24,
     name: 'Kirt Irah Fernandez',
     role: 'BSIT Student',
     image: '/img/noprofile.jpg',
@@ -213,7 +213,7 @@ const studentsData = [
     showHover: false
   },
   {
-    id: 26,
+    id: 25,
     name: 'Mariel Gonato',
     role: 'BSIT Student',
     image: '/img/noprofile.jpg',
@@ -221,7 +221,7 @@ const studentsData = [
     showHover: false
   },
   {
-    id: 27,
+    id: 26,
     name: 'Lawrence Ledesma',
     role: 'BSIT Student',
     image: '/img/noprofile.jpg',
@@ -229,7 +229,7 @@ const studentsData = [
     showHover: false
   },
   {
-    id: 28,
+    id: 27,
     name: 'Alexa Suzane Loon',
     role: 'BSIT Student',
     image: '/img/noprofile.jpg',
@@ -237,7 +237,7 @@ const studentsData = [
     showHover: false
   },
   {
-    id: 29,
+    id: 28,
     name: 'Jerome Magdadaro',
     role: 'BSIT Student',
     image: '/img/noprofile.jpg',
@@ -253,7 +253,15 @@ const studentsData = [
     showHover: false
   },
   {
-    id: 31,
+    id: 29,
+    name: 'Restie Moralde',
+    role: 'BSIT Student',
+    image: '/img/noprofile.jpg',
+    facebook: 'https://facebook.com',
+    showHover: false
+  },
+  {
+    id: 30,
     name: 'Reyvehn Nulla',
     role: 'BSIT Student',
     image: '/img/noprofile.jpg',
@@ -261,7 +269,7 @@ const studentsData = [
     showHover: false
   },
   {
-    id: 32,
+    id: 31,
     name: 'Rheina Ompoy',
     role: 'BSIT Student',
     image: '/img/noprofile.jpg',
@@ -269,7 +277,7 @@ const studentsData = [
     showHover: false
   },
   {
-    id: 33,
+    id: 32,
     name: 'Raniza Pepito',
     role: 'BSIT Student',
     image: '/img/noprofile.jpg',
@@ -277,7 +285,7 @@ const studentsData = [
     showHover: false
   },
   {
-    id: 34,
+    id: 33,
     name: 'Matthew Gayle Pepito',
     role: 'BSIT Student',
     image: '/img/noprofile.jpg',
@@ -285,7 +293,7 @@ const studentsData = [
     showHover: false
   },
   {
-    id: 35,
+    id: 34,
     name: 'Alyza Pitogo',
     role: 'BSIT Student',
     image: '/img/noprofile.jpg',
@@ -293,7 +301,7 @@ const studentsData = [
     showHover: false
   },
   {
-    id: 36,
+    id: 35,
     name: 'Christine Rosalejos',
     role: 'BSIT Student',
     image: '/img/noprofile.jpg',
@@ -301,7 +309,7 @@ const studentsData = [
     showHover: false
   },
   {
-    id: 37,
+    id: 36,
     name: 'Angel Mae Santosidad',
     role: 'BSIT Student',
     image: '/img/noprofile.jpg',
@@ -309,7 +317,7 @@ const studentsData = [
     showHover: false
   },
   {
-    id: 38,
+    id: 37,
     name: 'Benjie Sumile',
     role: 'BSIT Student',
     image: '/img/noprofile.jpg',
@@ -317,7 +325,7 @@ const studentsData = [
     showHover: false
   },
   {
-    id: 39,
+    id: 38,
     name: 'Kenneth Brian Tangkay',
     role: 'BSIT Student',
     image: '/img/noprofile.jpg',
@@ -325,7 +333,7 @@ const studentsData = [
     showHover: false
   },
   {
-    id: 40,
+    id: 39,
     name: 'Ma. Bliza Tayo',
     role: 'BSIT Student',
     image: '/img/noprofile.jpg',
@@ -333,7 +341,7 @@ const studentsData = [
     showHover: false
   },
   {
-    id: 41,
+    id: 40,
     name: 'Elijah Glenn B. Tugad',
     role: 'BSIT Student',
     image: '/img/noprofile.jpg',
@@ -341,7 +349,7 @@ const studentsData = [
     showHover: false
   },
   {
-    id: 42,
+    id: 41,
     name: 'Lourence Zambas',
     role: 'BSIT Student',
     image: '/img/noprofile.jpg',
