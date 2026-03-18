@@ -158,10 +158,11 @@ const studentsData = [
   {
     id: 19,
     name: 'Allan Jr. De Jesus',
-    role: 'BSIT Student',
+    role: 'Leader',
     image: '/img/noprofile.jpg',
+    github: 'https://github.com',
     facebook: 'https://facebook.com',
-    showHover: false
+    showHover: true
   },
   {
     id: 20,

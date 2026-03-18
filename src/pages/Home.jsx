@@ -25,7 +25,7 @@ const Home = () => {
       <Navbar scrollY={scrollY} />
       <Hero scrollY={scrollY} />
       <Programs />
-      <Students limit={7} showSeeMore={true} />
+      <Students limit={8} showSeeMore={true} />
       <Projects />
       <BatchInfo />
       <About />
