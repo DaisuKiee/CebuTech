@@ -19,7 +19,7 @@ const studentsData = [
     name: 'Elijah Tugad',
     role: 'Leader',
     frontImage: '/img/elijah.png',
-    backImage: '/img/elijah.png',
+    backImage: '/img/meme-elijah.jpg',
     github: 'https://github.com',
     facebook: 'https://facebook.com',
     showHover: true
@@ -29,7 +29,7 @@ const studentsData = [
     name: 'Lord Jason Riveral',
     role: 'Leader',
     frontImage: '/img/jason.png',
-    backImage: '/img/jason.png',
+    backImage: '/img/meme-jason.jpg',
     github: 'https://github.com',
     facebook: 'https://facebook.com',
     showHover: true
@@ -48,7 +48,7 @@ const studentsData = [
     id: 5,
     name: 'Marco Montellano',
     role: 'Leader',
-    frontImage: '/img/Marco.jpg',
+    frontImage: '/img/meme-marco.jpg',
     backImage: '/img/Marco.jpg',
     github: 'https://github.com',
     facebook: 'https://facebook.com',
