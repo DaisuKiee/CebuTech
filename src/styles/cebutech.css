@@ -891,10 +891,25 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.student-image-front {
   backface-visibility: hidden;
   position: absolute;
   top: 0;
   left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.student-image-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  transform: rotateY(180deg);
 }
 
 .student-overlay {
@@ -907,8 +922,6 @@ body {
   display: flex;
   align-items: flex-end;
   padding: 1.5rem;
-  backface-visibility: hidden;
-  transform: rotateY(180deg);
 }
 
 .student-overlay-content {

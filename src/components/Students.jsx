@@ -8,7 +8,8 @@ const studentsData = [
     id: 1,
     name: 'Vicent Bernabe V. Romeo',
     role: 'Leader',
-    image: '/img/Daisu.png',
+    frontImage: '/img/Daisu.png',
+    backImage: '/img/Daisu.png',
     github: 'https://github.com',
     facebook: 'https://facebook.com',
     showHover: true
@@ -17,7 +18,8 @@ const studentsData = [
     id: 2,
     name: 'Elijah Tugad',
     role: 'Leader',
-    image: '/img/elijah.png',
+    frontImage: '/img/elijah.png',
+    backImage: '/img/elijah.png',
     github: 'https://github.com',
     facebook: 'https://facebook.com',
     showHover: true
@@ -26,7 +28,8 @@ const studentsData = [
     id: 3,
     name: 'Lord Jason Riveral',
     role: 'Leader',
-    image: '/img/jason.png',
+    frontImage: '/img/jason.png',
+    backImage: '/img/jason.png',
     github: 'https://github.com',
     facebook: 'https://facebook.com',
     showHover: true
@@ -35,7 +38,8 @@ const studentsData = [
     id: 4,
     name: 'John Cadaro',
     role: 'Leader',
-    image: '/img/john.png',
+    frontImage: '/img/john.png',
+    backImage: '/img/john.png',
     github: 'https://github.com',
     facebook: 'https://facebook.com',
     showHover: true
@@ -44,7 +48,8 @@ const studentsData = [
     id: 5,
     name: 'Marco Montellano',
     role: 'Leader',
-    image: '/img/Marco.jpg',
+    frontImage: '/img/Marco.jpg',
+    backImage: '/img/Marco.jpg',
     github: 'https://github.com',
     facebook: 'https://facebook.com',
     showHover: true
@@ -53,7 +58,8 @@ const studentsData = [
     id: 6,
     name: 'Zea Marae Ramil',
     role: 'Leader',
-    image: '/img/zea.png',
+    frontImage: '/img/zea.png',
+    backImage: '/img/zea.png',
     github: 'https://github.com',
     facebook: 'https://facebook.com',
     showHover: true
@@ -62,7 +68,8 @@ const studentsData = [
     id: 7,
     name: 'Merry Apple Edaño',
     role: 'Leader',
-    image: '/img/apple.png',
+    frontImage: '/img/apple.png',
+    backImage: '/img/apple.png',
     github: 'https://github.com',
     facebook: 'https://facebook.com',
     showHover: true
@@ -71,7 +78,8 @@ const studentsData = [
     id: 8,
     name: 'Allan Jr. De Jesus',
     role: 'Leader',
-    image: '/img/noprofile.jpg',
+    frontImage: '/img/noprofile.jpg',
+    backImage: '/img/noprofile.jpg',
     github: 'https://github.com',
     facebook: 'https://facebook.com',
     showHover: true
@@ -405,18 +413,33 @@ const Students = ({ limit = null, showSeeMore = false }) => {
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <div className="student-image-container">
-                <img 
-                  src={student.image} 
-                  alt={student.name}
-                  className="student-image"
-                />
-                {student.showHover && (
-                  <div className="student-overlay">
-                    <div className="student-overlay-content">
-                      <h3 className="student-overlay-name">{student.name}</h3>
-                      <p className="student-overlay-role">{student.role}</p>
+                {student.showHover ? (
+                  <>
+                    <img 
+                      src={student.frontImage} 
+                      alt={`${student.name} - Front`}
+                      className="student-image student-image-front"
+                    />
+                    <div className="student-image-back">
+                      <img 
+                        src={student.backImage} 
+                        alt={`${student.name} - Back`}
+                        className="student-image"
+                      />
+                      <div className="student-overlay">
+                        <div className="student-overlay-content">
+                          <h3 className="student-overlay-name">{student.name}</h3>
+                          <p className="student-overlay-role">{student.role}</p>
+                        </div>
+                      </div>
                     </div>
-                  </div>
+                  </>
+                ) : (
+                  <img 
+                    src={student.image} 
+                    alt={student.name}
+                    className="student-image"
+                  />
                 )}
               </div>
               
