@@ -1,488 +1,150 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { ArrowRight, Github, Facebook } from 'lucide-react';
+import React, { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Github, Facebook, Search } from 'lucide-react';
+import { leaders, classmates, batchSize } from '../data/students';
+import { useReveal, useTilt } from '../lib/motion';
 
-// Student data for Batch 2023-2027
-const studentsData = [
-  {
-    id: 1,
-    name: 'Vicent Bernabe V. Romeo',
-    role: 'Leader',
-    frontImage: '/img/Daisu.png',
-    backImage: '/img/Daisu.png',
-    github: 'https://github.com',
-    facebook: 'https://facebook.com',
-    showHover: true
-  },
-  {
-    id: 2,
-    name: 'Elijah Tugad',
-    role: 'Leader',
-    frontImage: '/img/elijah.png',
-    backImage: '/img/meme-elijah.jpg',
-    github: 'https://github.com',
-    facebook: 'https://facebook.com',
-    showHover: true
-  },
-  {
-    id: 3,
-    name: 'Lord Jason Riveral',
-    role: 'Leader',
-    frontImage: '/img/jason.png',
-    backImage: '/img/meme-jason.jpg',
-    github: 'https://github.com',
-    facebook: 'https://facebook.com',
-    showHover: true
-  },
-  {
-    id: 4,
-    name: 'John Cadaro',
-    role: 'Leader',
-    frontImage: '/img/john.png',
-    backImage: '/img/meme-john.jpg',
-    github: 'https://github.com',
-    facebook: 'https://facebook.com',
-    showHover: true
-  },
-  {
-    id: 5,
-    name: 'Marco Montellano',
-    role: 'Leader',
-    frontImage: '/img/Marco.jpg',
-    backImage: '/img/meme-marco.jpg',
-    github: 'https://github.com',
-    facebook: 'https://facebook.com',
-    showHover: true
-  },
-  {
-    id: 6,
-    name: 'Zea Marae Ramil',
-    role: 'Leader',
-    frontImage: '/img/zea.png',
-    backImage: '/img/zea.png',
-    github: 'https://github.com',
-    facebook: 'https://facebook.com',
-    showHover: true
-  },
-  {
-    id: 7,
-    name: 'Merry Apple Edaño',
-    role: 'Leader',
-    frontImage: '/img/apple.png',
-    backImage: '/img/apple.png',
-    github: 'https://github.com',
-    facebook: 'https://facebook.com',
-    showHover: true
-  },
-  {
-    id: 8,
-    name: 'Allan Jr. De Jesus',
-    role: 'Leader',
-    frontImage: '/img/allan.png',
-    backImage: '/img/meme-allan.jpg',
-    github: 'https://github.com',
-    facebook: 'https://facebook.com',
-    showHover: true
-  },
-  {
-    id: 9,
-    name: 'Kier Louie Arriesgado',
-    role: 'BSIT Student',
-    image: '/img/noprofile.jpg',
-    facebook: 'https://facebook.com',
-    showHover: false
-  },
-  {
-    id: 10,
-    name: 'Francis Keith Banan',
-    role: 'BSIT Student',
-    image: '/img/noprofile.jpg',
-    facebook: 'https://facebook.com',
-    showHover: false
-  },
-  {
-    id: 11,
-    name: 'Romel Batusbatusan',
-    role: 'BSIT Student',
-    image: '/img/noprofile.jpg',
-    facebook: 'https://facebook.com',
-    showHover: false
-  },
-  {
-    id: 12,
-    name: 'John Fernand Bauno',
-    role: 'BSIT Student',
-    image: '/img/noprofile.jpg',
-    facebook: 'https://facebook.com',
-    showHover: false
-  },
-  {
-    id: 12,
-    name: 'Monick Cabagte',
-    role: 'BSIT Student',
-    image: '/img/noprofile.jpg',
-    facebook: 'https://facebook.com',
-    showHover: false
-  },
-  {
-    id: 13,
-    name: 'Fanny Rose Caballes',
-    role: 'BSIT Student',
-    image: '/img/noprofile.jpg',
-    facebook: 'https://facebook.com',
-    showHover: false
-  },
-  {
-    id: 14,
-    name: 'Carmela Cabardo',
-    role: 'BSIT Student',
-    image: '/img/noprofile.jpg',
-    facebook: 'https://facebook.com',
-    showHover: false
-  },
-  {
-    id: 15,
-    name: 'Hazzel Canama',
-    role: 'BSIT Student',
-    image: '/img/noprofile.jpg',
-    facebook: 'https://facebook.com',
-    showHover: false
-  },
-  {
-    id: 16,
-    name: 'Christine Conde',
-    role: 'BSIT Student',
-    image: '/img/noprofile.jpg',
-    facebook: 'https://facebook.com',
-    showHover: false
-  },
-  {
-    id: 17,
-    name: 'Jhemarsh Lee Conde',
-    role: 'BSIT Student',
-    image: '/img/noprofile.jpg',
-    facebook: 'https://facebook.com',
-    showHover: false
-  },
-  {
-    id: 18,
-    name: 'Jovannie Congson',
-    role: 'BSIT Student',
-    image: '/img/noprofile.jpg',
-    facebook: 'https://facebook.com',
-    showHover: false
-  },
-  {
-    id: 19,
-    name: 'Bea Dejito',
-    role: 'BSIT Student',
-    image: '/img/noprofile.jpg',
-    facebook: 'https://facebook.com',
-    showHover: false
-  },
-  {
-    id: 20,
-    name: 'Frances Mae Dela Pieza',
-    role: 'BSIT Student',
-    image: '/img/noprofile.jpg',
-    facebook: 'https://facebook.com',
-    showHover: false
-  },
-  {
-    id: 21,
-    name: 'Bea Delos Santos',
-    role: 'BSIT Student',
-    image: '/img/noprofile.jpg',
-    facebook: 'https://facebook.com',
-    showHover: false
-  },
-  {
-    id: 22,
-    name: 'Vence Peter Doble',
-    role: 'BSIT Student',
-    image: '/img/noprofile.jpg',
-    facebook: 'https://facebook.com',
-    showHover: false
-  },
-  {
-    id: 23,
-    name: 'Justin Dumon',
-    role: 'BSIT Student',
-    image: '/img/noprofile.jpg',
-    facebook: 'https://facebook.com',
-    showHover: false
-  },
-  {
-    id: 24,
-    name: 'Kirt Irah Fernandez',
-    role: 'BSIT Student',
-    image: '/img/noprofile.jpg',
-    facebook: 'https://facebook.com',
-    showHover: false
-  },
-  {
-    id: 25,
-    name: 'Mariel Gonato',
-    role: 'BSIT Student',
-    image: '/img/noprofile.jpg',
-    facebook: 'https://facebook.com',
-    showHover: false
-  },
-  {
-    id: 26,
-    name: 'Lawrence Ledesma',
-    role: 'BSIT Student',
-    image: '/img/noprofile.jpg',
-    facebook: 'https://facebook.com',
-    showHover: false
-  },
-  {
-    id: 27,
-    name: 'Alexa Suzane Loon',
-    role: 'BSIT Student',
-    image: '/img/noprofile.jpg',
-    facebook: 'https://facebook.com',
-    showHover: false
-  },
-  {
-    id: 28,
-    name: 'Jerome Magdadaro',
-    role: 'BSIT Student',
-    image: '/img/noprofile.jpg',
-    facebook: 'https://facebook.com',
-    showHover: false
-  },
-  {
-    id: 30,
-    name: 'Restie Moralde',
-    role: 'BSIT Student',
-    image: '/img/noprofile.jpg',
-    facebook: 'https://facebook.com',
-    showHover: false
-  },
-  {
-    id: 29,
-    name: 'Restie Moralde',
-    role: 'BSIT Student',
-    image: '/img/noprofile.jpg',
-    facebook: 'https://facebook.com',
-    showHover: false
-  },
-  {
-    id: 30,
-    name: 'Reyvehn Nulla',
-    role: 'BSIT Student',
-    image: '/img/noprofile.jpg',
-    facebook: 'https://facebook.com',
-    showHover: false
-  },
-  {
-    id: 31,
-    name: 'Rheina Ompoy',
-    role: 'BSIT Student',
-    image: '/img/noprofile.jpg',
-    facebook: 'https://facebook.com',
-    showHover: false
-  },
-  {
-    id: 32,
-    name: 'Raniza Pepito',
-    role: 'BSIT Student',
-    image: '/img/noprofile.jpg',
-    facebook: 'https://facebook.com',
-    showHover: false
-  },
-  {
-    id: 33,
-    name: 'Matthew Gayle Pepito',
-    role: 'BSIT Student',
-    image: '/img/noprofile.jpg',
-    facebook: 'https://facebook.com',
-    showHover: false
-  },
-  {
-    id: 34,
-    name: 'Alyza Pitogo',
-    role: 'BSIT Student',
-    image: '/img/noprofile.jpg',
-    facebook: 'https://facebook.com',
-    showHover: false
-  },
-  {
-    id: 35,
-    name: 'Christine Rosalejos',
-    role: 'BSIT Student',
-    image: '/img/noprofile.jpg',
-    facebook: 'https://facebook.com',
-    showHover: false
-  },
-  {
-    id: 36,
-    name: 'Angel Mae Santosidad',
-    role: 'BSIT Student',
-    image: '/img/noprofile.jpg',
-    facebook: 'https://facebook.com',
-    showHover: false
-  },
-  {
-    id: 37,
-    name: 'Benjie Sumile',
-    role: 'BSIT Student',
-    image: '/img/noprofile.jpg',
-    facebook: 'https://facebook.com',
-    showHover: false
-  },
-  {
-    id: 38,
-    name: 'Kenneth Brian Tangkay',
-    role: 'BSIT Student',
-    image: '/img/noprofile.jpg',
-    facebook: 'https://facebook.com',
-    showHover: false
-  },
-  {
-    id: 39,
-    name: 'Ma. Bliza Tayo',
-    role: 'BSIT Student',
-    image: '/img/noprofile.jpg',
-    facebook: 'https://facebook.com',
-    showHover: false
-  },
-  {
-    id: 40,
-    name: 'Elijah Glenn B. Tugad',
-    role: 'BSIT Student',
-    image: '/img/noprofile.jpg',
-    facebook: 'https://facebook.com',
-    showHover: false
-  },
-  {
-    id: 41,
-    name: 'Lourence Zambas',
-    role: 'BSIT Student',
-    image: '/img/noprofile.jpg',
-    facebook: 'https://facebook.com',
-    showHover: false
-  }
-];
+const initials = (name) =>
+  name
+    .replace(/[^A-Za-zÀ-ÿ\s]/g, '')
+    .split(/\s+/)
+    .filter(Boolean)
+    .filter((w, i, a) => i === 0 || i === a.length - 1)
+    .map((w) => w[0])
+    .join('');
 
-const Students = ({ limit = null, showSeeMore = false }) => {
-  const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef(null);
-  const navigate = useNavigate();
+const hueOf = (name) => [...name].reduce((h, c) => (h * 31 + c.charCodeAt(0)) % 360, 7);
 
-  const displayedStudents = limit ? studentsData.slice(0, limit) : studentsData;
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    const currentRef = sectionRef.current;
-    if (currentRef) {
-      observer.observe(currentRef);
-    }
-
-    return () => {
-      if (currentRef) {
-        observer.unobserve(currentRef);
-      }
-    };
-  }, []);
+const LeaderCard = ({ student, index }) => {
+  const tilt = useTilt({ max: 8 });
+  const [flipped, setFlipped] = useState(false);
+  const toggle = () => setFlipped((f) => !f);
 
   return (
-    <section id="students" className="students-section" ref={sectionRef}>
-      <div className="students-container">
-        <div className={`students-header ${isVisible ? 'visible' : ''}`}>
-          <h2 className="section-title">Our Students</h2>
-          <p className="section-subtitle">
-            Meet the talented individuals shaping the future of technology
-          </p>
-        </div>
-
-        <div className={`students-grid ${isVisible ? 'visible' : ''}`}>
-          {displayedStudents.map((student, index) => (
-            <div 
-              key={student.id} 
-              className={`student-card ${student.showHover ? 'has-hover' : 'no-hover'}`}
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              <div className="student-image-container">
-                {student.showHover ? (
-                  <>
-                    <img 
-                      src={student.frontImage} 
-                      alt={`${student.name} - Front`}
-                      className="student-image student-image-front"
-                    />
-                    <div className="student-image-back">
-                      <img 
-                        src={student.backImage} 
-                        alt={`${student.name} - Back`}
-                        className="student-image"
-                      />
-                      <div className="student-overlay">
-                        <div className="student-overlay-content">
-                          <h3 className="student-overlay-name">{student.name}</h3>
-                          <p className="student-overlay-role">{student.role}</p>
-                        </div>
-                      </div>
-                    </div>
-                  </>
-                ) : (
-                  <img 
-                    src={student.image} 
-                    alt={student.name}
-                    className="student-image"
-                  />
-                )}
-              </div>
-              
-              <div className="student-content">
-                <h3 className="student-name">{student.name}</h3>
-                
-                <div className="student-socials">
-                  {student.github && (
-                    <a 
-                      href={student.github} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="social-link github-link"
-                      aria-label={`${student.name}'s GitHub`}
-                    >
-                      <Github size={18} />
-                    </a>
-                  )}
-                  {student.facebook && (
-                    <a 
-                      href={student.facebook} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="social-link facebook-link"
-                      aria-label={`${student.name}'s Facebook`}
-                    >
-                      <Facebook size={18} />
-                    </a>
-                  )}
-                </div>
+    <article className="student" style={{ '--i': index }}>
+      <div
+        ref={tilt}
+        className={`student-card tilt ${flipped ? 'is-flipped' : ''}`}
+        tabIndex={0}
+        role="button"
+        data-cursor="Flip"
+        aria-pressed={flipped}
+        aria-label={`Flip ${student.name}'s card`}
+        onClick={toggle}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            toggle();
+          }
+        }}
+      >
+        <div className="tilt-inner">
+          <div className="flipper">
+            <div className="face front">
+              <img src={student.front} alt={student.name} loading="lazy" />
+            </div>
+            <div className="face back">
+              <img src={student.back} alt="" loading="lazy" />
+              <span className="holo" aria-hidden="true" />
+              <div className="back-caption">
+                <strong>{student.name}</strong>
+                <span>{student.role}</span>
               </div>
             </div>
+          </div>
+          <span className="glare" aria-hidden="true" />
+        </div>
+      </div>
+      <div className="student-meta">
+        <h3 className="student-name">{student.name}</h3>
+        <div className="student-socials">
+          {student.github && (
+            <a href={student.github} target="_blank" rel="noopener noreferrer" aria-label={`${student.name} on GitHub`}>
+              <Github size={16} />
+            </a>
+          )}
+          {student.facebook && (
+            <a href={student.facebook} target="_blank" rel="noopener noreferrer" aria-label={`${student.name} on Facebook`}>
+              <Facebook size={16} />
+            </a>
+          )}
+        </div>
+      </div>
+    </article>
+  );
+};
+
+const Classmates = () => {
+  const [query, setQuery] = useState('');
+  const reveal = useReveal({ threshold: 0.05 });
+  const list = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    return q ? classmates.filter((s) => s.name.toLowerCase().includes(q)) : classmates;
+  }, [query]);
+
+  return (
+    <div className="classmates" ref={reveal}>
+      <div className="classmates-head">
+        <h3 className="classmates-title">The rest of the batch</h3>
+        <label className="search">
+          <Search size={16} aria-hidden="true" />
+          <input
+            type="search"
+            placeholder="Find a classmate"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            aria-label="Find a classmate by name"
+          />
+        </label>
+      </div>
+      {list.length === 0 ? (
+        <p className="empty">No one in the batch matches "{query}". Try a first or last name.</p>
+      ) : (
+        <ul className="classmates-grid">
+          {list.map((s, i) => (
+            <li key={s.name} className="classmate" style={{ '--i': Math.min(i, 20), '--hue': hueOf(s.name) }}>
+              <span className="avatar" aria-hidden="true">{initials(s.name)}</span>
+              <span className="classmate-name">{s.name}</span>
+              <a href={s.facebook} target="_blank" rel="noopener noreferrer" aria-label={`${s.name} on Facebook`}>
+                <Facebook size={14} />
+              </a>
+            </li>
           ))}
+        </ul>
+      )}
+    </div>
+  );
+};
+
+const Students = ({ full = false }) => {
+  const reveal = useReveal({ threshold: 0.08 });
+  const navigate = useNavigate();
+
+  return (
+    <section id="students" className="section students">
+      <div className="container">
+        <div ref={reveal}>
+          {!full && (
+            <header className="section-head">
+              <h2 className="section-title split-up">The batch</h2>
+              <p className="section-subtitle fade-up">
+                Our class leaders. Hover or tap a card to see the other side.
+              </p>
+            </header>
+          )}
+          <div className="students-grid">
+            {leaders.map((s, i) => (
+              <LeaderCard key={s.name} student={s} index={i} />
+            ))}
+          </div>
         </div>
 
-        {showSeeMore && (
-          <div className="students-see-more">
-            <button 
-              className="btn-see-more"
-              onClick={() => navigate('/students')}
-            >
-              See More Students
-              <ArrowRight size={20} />
+        {full ? (
+          <Classmates />
+        ) : (
+          <div className="students-more">
+            <button className="btn btn-ghost" onClick={() => navigate('/students')}>
+              See all {batchSize} students
             </button>
           </div>
         )}

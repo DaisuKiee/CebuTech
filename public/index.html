@@ -56,7 +56,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700;800&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="theme-color" content="#031019">
     
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json">
@@ -135,124 +136,35 @@
     </script>
     
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            overflow-x: hidden;
-            width: 100%;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: #0a0a0f;
-            color: #ffffff;
-            overflow-x: hidden;
-            width: 100%;
-            position: relative;
-        }
-
-        #root {
-            min-height: 100vh;
-            width: 100%;
-            overflow-x: hidden;
-        }
-
-        /* Loading Screen */
+        html, body { margin: 0; background: #031019; color: #e8f6f7; }
         .loading-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 100%);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: opacity 0.5s ease-out;
+            position: fixed; inset: 0; z-index: 9999;
+            display: grid; place-items: center; gap: 0;
+            background: radial-gradient(60% 50% at 50% 60%, #0a2433 0%, #031019 70%);
+            transition: opacity .7s cubic-bezier(.22,1,.36,1), visibility .7s;
         }
-
-        .loading-screen.hidden {
+        .loading-screen.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+        .loader { position: relative; width: 64px; height: 64px; }
+        .loader span {
+            position: absolute; inset: 0; border-radius: 50%;
+            border: 1.5px solid rgba(69,240,223,.9);
+            animation: ripple 1.8s cubic-bezier(.22,1,.36,1) infinite;
             opacity: 0;
-            pointer-events: none;
         }
-
-        .loader {
-            width: 60px;
-            height: 60px;
-            border: 4px solid rgba(99, 102, 241, 0.1);
-            border-top: 4px solid #6366f1;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .loading-text {
-            margin-top: 20px;
-            font-size: 1.2rem;
-            color: #6366f1;
-            font-weight: 600;
-            letter-spacing: 0.05em;
-        }
-
-        /* Smooth scroll */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #0a0a0f;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #6366f1;
-            border-radius: 5px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: #4f46e5;
-        }
+        .loader span:nth-child(2) { animation-delay: .6s; }
+        .loader span:nth-child(3) { animation-delay: 1.2s; }
+        @keyframes ripple { 0% { transform: scale(.2); opacity: 1; } 100% { transform: scale(1.6); opacity: 0; } }
+        @media (prefers-reduced-motion: reduce) { .loader span { animation: none; opacity: .6; } }
     </style>
 </head>
 <body>
     <!-- Loading Screen -->
-    <div class="loading-screen" id="loading-screen">
-        <div class="loader"></div>
-        <div class="loading-text">Loading CebuTech...</div>
+    <div class="loading-screen" id="loading-screen" aria-hidden="true">
+        <div class="loader"><span></span><span></span><span></span></div>
     </div>
 
     <!-- React Root -->
     <div id="root"></div>
-
-    <!-- Hide loading screen when React loads -->
-    <script>
-        window.addEventListener('load', function() {
-            setTimeout(function() {
-                const loadingScreen = document.getElementById('loading-screen');
-                if (loadingScreen) {
-                    loadingScreen.classList.add('hidden');
-                    setTimeout(function() {
-                        loadingScreen.style.display = 'none';
-                    }, 500);
-                }
-            }, 500);
-        });
-    </script>
 
     <noscript>
         <div style="text-align: center; padding: 50px; color: #fff;">

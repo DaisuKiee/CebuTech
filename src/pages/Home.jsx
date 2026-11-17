@@ -1,36 +1,41 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
 import Programs from '../components/Programs';
 import Students from '../components/Students';
 import Projects from '../components/Projects';
-import BatchInfo from '../components/BatchInfo';
+import Journey from '../components/Journey';
 import About from '../components/About';
 import Footer from '../components/Footer';
+import Bands from '../components/Bands';
+import Dock from '../components/Dock';
+import { scrollToTarget } from '../lib/motion';
 
 const Home = () => {
-  const [scrollY, setScrollY] = useState(0);
+  const location = useLocation();
 
+  // Arriving from another page with a section to jump to.
   useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    const id = location.state && location.state.scrollTo;
+    if (!id) return undefined;
+    const t = setTimeout(() => scrollToTarget(id), 350);
+    return () => clearTimeout(t);
+  }, [location]);
 
   return (
-    <div className="home-container">
-      <Navbar scrollY={scrollY} />
-      <Hero scrollY={scrollY} />
+    <main className="page">
+      <Navbar />
+      <Hero />
       <Programs />
-      <Students limit={8} showSeeMore={true} />
+      <Bands />
+      <Students />
       <Projects />
-      <BatchInfo />
+      <Journey />
       <About />
       <Footer />
-    </div>
+      <Dock />
+    </main>
   );
 };
 

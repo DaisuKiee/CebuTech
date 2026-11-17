@@ -1,43 +1,41 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef } from 'react';
+import { useScrollProgress } from '../lib/motion';
+
+const text =
+  "We are BSIT students from Cebu Technological University, Daanbantayan Campus. This site follows our batch through four years of classes, projects, and late nights. Together we're building the future of technology in the Philippines, one project at a time.";
+
+const words = text.split(' ');
 
 const About = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef(null);
+  const wordsRef = useRef([]);
+  const bgRef = useRef(null);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    const currentRef = sectionRef.current;
-    if (currentRef) {
-      observer.observe(currentRef);
+  // Words light up one by one as the section scrolls through the viewport.
+  const sectionRef = useScrollProgress((p) => {
+    const lit = Math.max(0, Math.min(1, (p - 0.15) / 0.45)) * words.length;
+    wordsRef.current.forEach((w, i) => {
+      if (!w) return;
+      const v = Math.max(0.14, Math.min(1, lit - i + 1));
+      w.style.opacity = v.toFixed(3);
+    });
+    if (bgRef.current) {
+      bgRef.current.style.transform = `translate3d(0, ${((p - 0.5) * 18).toFixed(2)}%, 0) scale(1.15)`;
     }
-
-    return () => {
-      if (currentRef) {
-        observer.unobserve(currentRef);
-      }
-    };
-  }, []);
+  });
 
   return (
-    <section id="about" className="about-section" ref={sectionRef}>
-      <div className="about-container">
-        <div className={`about-content ${isVisible ? 'visible' : ''}`}>
-          <h2 className="section-title">About Us</h2>
-          <p className="about-text">
-            We are a community of BSIT students, tech enthusiasts, innovators, and future leaders 
-            from Cebu Technological University – Daanbantayan Campus. This showcase highlights our journey, 
-            projects, and achievements as we progress through our academic years. Together, we're 
-            building the future of technology in the Philippines.
-          </p>
-        </div>
+    <section id="about" className="about" ref={sectionRef}>
+      <div className="about-bg" ref={bgRef} style={{ backgroundImage: 'url(/img/ctu.png)' }} aria-hidden="true" />
+      <div className="about-shade" aria-hidden="true" />
+      <div className="container about-inner">
+        <h2 className="about-label">About us</h2>
+        <p className="about-text">
+          {words.map((w, i) => (
+            <span key={i} ref={(el) => (wordsRef.current[i] = el)} className="about-word">
+              {w}{' '}
+            </span>
+          ))}
+        </p>
       </div>
     </section>
   );

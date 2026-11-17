@@ -1,98 +1,78 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { scrollToTarget } from '../lib/motion';
 
-const Navbar = ({ scrollY }) => {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const scrolled = scrollY > 50;
+const links = [
+  { id: 'hero', label: 'Home' },
+  { id: 'programs', label: 'Programs' },
+  { id: 'students', label: 'Students' },
+  { id: 'projects', label: 'Projects' },
+  { id: 'journey', label: 'Journey' },
+  { id: 'about', label: 'About' },
+];
+
+const Navbar = () => {
+  const [open, setOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
 
-  const handleNavigation = (sectionId) => {
-    setMobileMenuOpen(false); // Close mobile menu
-    
-    // If we're not on the home page, navigate to home first
-    if (location.pathname !== '/') {
-      navigate('/');
-      // Wait for navigation to complete, then scroll
-      setTimeout(() => {
-        const element = document.getElementById(sectionId);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }
-      }, 100);
-    } else {
-      // If we're already on home page, just scroll
-      const element = document.getElementById(sectionId);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
-  };
+  useEffect(() => {
+    document.body.classList.toggle('menu-open', open);
+    const onKey = (e) => e.key === 'Escape' && setOpen(false);
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [open]);
 
-  const handleLogoClick = () => {
-    setMobileMenuOpen(false);
-    navigate('/');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  const go = (id) => {
+    setOpen(false);
+    if (location.pathname !== '/') {
+      navigate('/', { state: { scrollTo: id } });
+    } else {
+      scrollToTarget(id);
+    }
   };
 
   return (
     <>
-      <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
-        <div className="navbar-container">
-          <div className="navbar-logo" onClick={handleLogoClick} style={{ cursor: 'pointer' }}>
-            <div className="logo-icon">
-              <img src="/img/ctulogo.png" alt="CTU Logo" className="logo-image" />
-            </div>
-            <span className="logo-text">CebuTech</span>
-          </div>
+      <nav className={`navbar ${open ? 'is-open' : ''}`} aria-label="Main">
+        <button className="navbar-logo" onClick={() => go('hero')}>
+          <img src="/img/ctulogo.png" alt="" className="logo-image" />
+          <span className="logo-text">CebuTech</span>
+        </button>
 
-          <div className="navbar-links desktop-only">
-            <button onClick={() => handleNavigation('hero')} className="nav-link">
-              Home
+        <div className="navbar-links">
+          {links.map((l) => (
+            <button key={l.id} onClick={() => go(l.id)} className="nav-link">
+              <span className="roll">
+                <span data-text={l.label}>{l.label}</span>
+              </span>
             </button>
-            <button onClick={() => handleNavigation('programs')} className="nav-link">
-              Programs
-            </button>
-            <button onClick={() => handleNavigation('projects')} className="nav-link">
-              Projects
-            </button>
-            <button onClick={() => handleNavigation('batch-info')} className="nav-link">
-              Batch Info
-            </button>
-            <button onClick={() => handleNavigation('about')} className="nav-link">
-              About
-            </button>
-          </div>
-
-          <button 
-            className="mobile-menu-toggle"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          ))}
         </div>
+
+        <button
+          className="menu-toggle"
+          onClick={() => setOpen((o) => !o)}
+          aria-label={open ? 'Close menu' : 'Open menu'}
+          aria-expanded={open}
+        >
+          <span /><span />
+        </button>
       </nav>
 
-      {/* Mobile Menu Overlay */}
-      <div className={`mobile-menu ${mobileMenuOpen ? 'open' : ''}`}>
+      <div className={`mobile-menu ${open ? 'open' : ''}`} aria-hidden={!open}>
         <div className="mobile-menu-content">
-          <button onClick={() => handleNavigation('hero')} className="mobile-nav-link">
-            Home
-          </button>
-          <button onClick={() => handleNavigation('programs')} className="mobile-nav-link">
-            Programs
-          </button>
-          <button onClick={() => handleNavigation('projects')} className="mobile-nav-link">
-            Projects
-          </button>
-          <button onClick={() => handleNavigation('batch-info')} className="mobile-nav-link">
-            Batch Info
-          </button>
-          <button onClick={() => handleNavigation('about')} className="mobile-nav-link">
-            About
-          </button>
+          {links.map((l, i) => (
+            <button
+              key={l.id}
+              onClick={() => go(l.id)}
+              className="mobile-nav-link"
+              style={{ '--i': i }}
+              tabIndex={open ? 0 : -1}
+            >
+              {l.label}
+            </button>
+          ))}
         </div>
       </div>
     </>
